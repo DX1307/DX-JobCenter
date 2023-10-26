@@ -5,8 +5,7 @@ Config.Frozen = true
 Config.Stoic = true
 Config.FadeIn = true
 Config.DistanceSpawn = 20.0
-Config.EyeTarget = 'qtarget' -- ox_target
-
+Config.EyeTarget = 'qtarget' -- ox_target -- เปลี่ยนที่ตนเองใช้
 
 Config.GenderNumbers = {
 	['male'] = 4,
