@@ -1,6 +1,6 @@
 ESX = exports['es_extended']:getSharedObject()
 
-if Config.EyeTarget = 'qtarget' then
+if Config.EyeTarget == 'qtarget' then
     exports.qtarget:AddTargetModel(Config.PedList.model, {
         options = {
             {
