@@ -18,5 +18,6 @@ files {
 dependencies {
     'es_extended',
     'ox_lib',
-    'qtarget'
+    -- 'qtarget',
+    'ox_target',
 }
