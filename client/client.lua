@@ -13,7 +13,7 @@ if Config.EyeTarget == 'qtarget' then
         },
         distance = 2.5
     })
-else
+elseif Config.EyeTarget == 'ox_target' then
     exports.ox_target:addModel(Config.PedList.model,{
         {
             icon = 'fas fa-sign-in-alt',
