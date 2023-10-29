@@ -1,53 +1,73 @@
 ESX = exports['es_extended']:getSharedObject()
 
-
-
 for k,v in pairs(Config.PedList) do
-exports.ox_target:addModel(v.model,{
-        {
-            icon = 'fas fa-sign-in-alt',
-            label = 'Register',
-            onSelect = function()
-                MenuJobCenter()
-            end
-        },
-})
+    if Config.EyeTarget == 'qtarget' then
+        exports.qtarget:AddTargetModel(v.model, {
+            options = {
+                {
+                    action = function ()
+                        MenuJobCenter()
+                    end,
+                    icon = 'fas fa-sign-in-alt',
+                    label = 'Register',
+                },
+            },
+            distance = 2
+        })
+    else
+        exports.ox_target:addModel(v.model,{
+            {
+                icon = 'fas fa-sign-in-alt',
+                label = 'Register',
+                onSelect = function()
+                    MenuJobCenter()
+                end
+            },
+        })
+    end
 end
 
 function MenuJobCenter()
     elements = {}
-    for k,v in pairs(Config.SelectJob) do
-        table.insert(elements, { 
-            title = v.title,
-            icon = v.icon,
-            image = 'nui:DX-JobCenter/img/'..v.img..'.png',
-            onSelect = function(args)
-                lib.hideContext(onExit)
-                lib.progressBar({
-                    duration = 5000,
-                    label = 'You register at the office..',
-                    position = 'bottom',
-                    useWhileDead = false,
-                    canCancel = false,
-                    anim = {
-                        dict = 'misscarsteal4@actor',
-                        clip = 'actor_berating_loop'
-                    },
-                    disable = {
-                        move = true,
-                        car = false
-                    },
-                })
-                TriggerServerEvent('DX-JobCenter:setjob',v.job)
-                lib.notify({
-                    title = 'JOB CENTER',
-                    description = 'Job successfully selected',
-                    position = 'top',
-                    icon = 'fa fa-check',
-                    type = 'success'
-                })
-            end,
-        })
+    for k,v in pairs(Config.PedList) do
+        for ka,va in pairs(v.SelectJob) do
+            print(ESX.DumpTable(va))
+            table.insert(elements, { 
+                title = va.title,
+                icon = va.icon,
+                description = Config.Lang.details..' '..va.des,
+                image = 'nui:DX-JobCenter/img/'..va.img..'.png',
+                onSelect = function()
+                    local alert = lib.alertDialog({
+                        header = Config.Lang.menu,
+                        content = Config.Lang.menu_orther..' '..va.title,
+                        centered = true,
+                        cancel = true
+                    })
+                    if alert == 'confirm' then
+                        lib.progressBar({
+                            duration = Config.ProgressTime*1000,
+                            label = Config.Lang.progress,
+                            position = 'bottom',
+                            useWhileDead = false,
+                            canCancel = false,
+                            anim = {
+                                dict = 'misscarsteal4@actor',
+                                clip = 'actor_berating_loop'
+                            },
+                            disable = {
+                                move = true,
+                                car = false
+                            },
+                        })
+                        TriggerServerEvent('gothic_jobcenter:setjob',va.job)
+                        Config.Notify(Config.Lang.confirm,'success')
+                    else
+                        Config.Notify(Config.Lang.cancel,'error')
+                    end
+                end,
+            })
+        end
     end
     lib.registerContext({
         id = 'jobcenter_menu',
