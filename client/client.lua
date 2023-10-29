@@ -1,6 +1,9 @@
 ESX = exports['es_extended']:getSharedObject()
 
-exports.ox_target:addModel(Config.PedList.model,{
+
+
+for k,v in pairs(Config.PedList) do
+exports.ox_target:addModel(v.model,{
         {
             icon = 'fas fa-sign-in-alt',
             label = 'Register',
@@ -9,6 +12,7 @@ exports.ox_target:addModel(Config.PedList.model,{
             end
         },
 })
+end
 
 function MenuJobCenter()
     elements = {}
