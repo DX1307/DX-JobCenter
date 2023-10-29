@@ -31,7 +31,6 @@ function MenuJobCenter()
     elements = {}
     for k,v in pairs(Config.PedList) do
         for ka,va in pairs(v.SelectJob) do
-            print(ESX.DumpTable(va))
             table.insert(elements, { 
                 title = va.title,
                 icon = va.icon,
