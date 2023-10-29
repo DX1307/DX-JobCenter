@@ -1,20 +1,6 @@
 ESX = exports['es_extended']:getSharedObject()
 
-if Config.EyeTarget == 'qtarget' then
-    exports.qtarget:AddTargetModel(Config.PedList.model, {
-        options = {
-            {
-                action = function ()
-                    MenuJobCenter()
-                end,
-                icon = 'fas fa-sign-in-alt',
-                label = 'Register',
-            },
-        },
-        distance = 2.5
-    })
-elseif Config.EyeTarget == 'ox_target' then
-    exports.ox_target:addModel(Config.PedList.model,{
+exports.ox_target:addModel(Config.PedList.model,{
         {
             icon = 'fas fa-sign-in-alt',
             label = 'Register',
@@ -22,8 +8,7 @@ elseif Config.EyeTarget == 'ox_target' then
                 MenuJobCenter()
             end
         },
-    })
-end
+})
 
 function MenuJobCenter()
     elements = {}
