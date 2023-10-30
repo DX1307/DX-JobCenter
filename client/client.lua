@@ -19,6 +19,7 @@ for k,v in pairs(Config.PedList) do
             {
                 icon = 'fas fa-sign-in-alt',
                 label = 'Register',
+                distance = 2.5,
                 onSelect = function()
                     MenuJobCenter()
                 end
