@@ -17,6 +17,7 @@ for k,v in pairs(Config.PedList) do
     else
         exports.ox_target:addModel(v.model,{
             {
+                name = k,
                 icon = 'fas fa-sign-in-alt',
                 label = 'Register',
                 distance = 2.5,
